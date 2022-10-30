@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum TError {
+    API_ERROR("SERVER API ERROR"),
     BAD_REQUEST("BAD REQUEST"),
     VALIDATION_ERROR("VALIDATION ERROR");
 

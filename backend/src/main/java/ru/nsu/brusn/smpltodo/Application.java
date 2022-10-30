@@ -8,9 +8,7 @@ import ru.nsu.brusn.smpltodo.config.RsaKeyProperties;
 @EnableConfigurationProperties(RsaKeyProperties.class)
 @SpringBootApplication
 public class Application {
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-
 }

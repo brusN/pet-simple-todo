@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ResponseWrapper<T> {
+    private String message;
     private T data;
 
     public ResponseWrapper(T data) {

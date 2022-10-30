@@ -36,7 +36,6 @@ out/
 ### VS Code ###
 .vscode/
 
-.idea
 
 ### Gradle ###
 .gradle
@@ -65,4 +64,7 @@ gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle/wrapper/gradle-wrapper.jar
+
+# RSA-keys
+/src/main/resources/
 
