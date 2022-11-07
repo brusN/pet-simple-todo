@@ -33,6 +33,9 @@ dependencies {
 	//implementation 'org.liquibase:liquibase-core'
 	runtimeOnly 'org.postgresql:postgresql'
 
+	// For JWT Auth
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
 	// Tests
 	testImplementation 'org.springframework.boot:spring-boot-startertest'
 }

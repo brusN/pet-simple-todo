@@ -1,5 +1,6 @@
 package ru.nsu.brusn.smpltodo.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +25,7 @@ public class UserEntity implements UserDetails {
     @NotNull
     private String username;
 
+    @JsonIgnore
     @NotNull
     private String password;
 
