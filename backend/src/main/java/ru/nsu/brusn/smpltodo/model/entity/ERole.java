@@ -3,8 +3,8 @@ package ru.nsu.brusn.smpltodo.model.entity;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum ERole implements GrantedAuthority {
-    ROLE_USER("ROLE_USER"),
-    ROLE_ADMIN("ROLE_ADMIN");
+    ROLE_USER("USER"),
+    ROLE_ADMIN("ADMIN");
 
     private final String authority;
 

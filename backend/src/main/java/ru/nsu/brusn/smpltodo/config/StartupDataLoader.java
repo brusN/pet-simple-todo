@@ -43,6 +43,7 @@ public class StartupDataLoader implements ApplicationRunner {
             var userRoleEntity = roleRepository.findByRole(ERole.ROLE_USER).orElseThrow(() -> new RoleNotFoundException("User role not exists!"));
             var adminRoleEntity = roleRepository.findByRole(ERole.ROLE_ADMIN).orElseThrow(() -> new RoleNotFoundException("Admin role not exists!"));
             rootAdminEntity.setRoles(Set.of(userRoleEntity, adminRoleEntity));
+
             userRepository.save(rootAdminEntity);
         }
     }

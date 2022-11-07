@@ -34,7 +34,7 @@ public class AuthService {
     private final JwtUtils jwtUtils;
 
     private Set<RoleEntity> getDefaultUserRoles() throws RoleNotFoundException {
-        var userRole = roleRepository.findByRole(ERole.ROLE_USER).orElseThrow(() -> new RoleNotFoundException("User role not exists!"));
+        var userRole = roleRepository.findByRole(ERole.ROLE_USER).orElseThrow(() -> new RoleNotFoundException("Role not exists!"));
         return Set.of(userRole);
     }
 
@@ -74,6 +74,7 @@ public class AuthService {
         userEntity.setUsername(request.getUsername());
         userEntity.setPassword(passwordEncoder.encode(request.getPassword()));
         userEntity.setRoles(getDefaultUserRoles());
+
         userRepository.save(userEntity);
     }
 }
