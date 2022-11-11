@@ -26,7 +26,7 @@ public class FolderController {
     public ResponseEntity<?> createNewFolder(@RequestBody CreateFolderRequest request) {
         var folder = folderRepository.findTaskFolderEntityByName(request.getName());
         if (folder.isPresent()) {
-            return ResponseEntity.badRequest().body(ResponseWrapper.errorResponse(TError.BAD_REQUEST.name(), "Folder already exists"));
+            return ResponseEntity.badRequest().body(ResponseWrapper.errorResponse(TError.BAD_REQUEST, "Folder already exists"));
         }
         TaskFolderEntity folderEntity = new TaskFolderEntity();
         folderEntity.setName(request.getName());

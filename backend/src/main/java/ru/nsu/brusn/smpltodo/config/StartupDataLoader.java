@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.nsu.brusn.smpltodo.exception.other.RoleNotFoundException;
+import ru.nsu.brusn.smpltodo.model.dto.response.common.TError;
 import ru.nsu.brusn.smpltodo.model.entity.RoleEntity;
 import ru.nsu.brusn.smpltodo.repository.RoleRepository;
 import ru.nsu.brusn.smpltodo.model.entity.ERole;
@@ -40,8 +41,8 @@ public class StartupDataLoader implements ApplicationRunner {
             var rootAdminEntity = new UserEntity();
             rootAdminEntity.setUsername("root");
             rootAdminEntity.setPassword(passwordEncoder.encode("rootpassword"));
-            var userRoleEntity = roleRepository.findByRole(ERole.ROLE_USER).orElseThrow(() -> new RoleNotFoundException("User role not exists!"));
-            var adminRoleEntity = roleRepository.findByRole(ERole.ROLE_ADMIN).orElseThrow(() -> new RoleNotFoundException("Admin role not exists!"));
+            var userRoleEntity = roleRepository.findByRole(ERole.ROLE_USER).orElseThrow(() -> new RoleNotFoundException("User role not exists!", TError.API_ERROR));
+            var adminRoleEntity = roleRepository.findByRole(ERole.ROLE_ADMIN).orElseThrow(() -> new RoleNotFoundException("Admin role not exists!", TError.API_ERROR));
             rootAdminEntity.setRoles(Set.of(userRoleEntity, adminRoleEntity));
 
             userRepository.save(rootAdminEntity);

@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ResponseWrapper<T> {
-    private String message;
     private T data;
 
     public ResponseWrapper(T data) {
@@ -19,8 +18,8 @@ public class ResponseWrapper<T> {
         return new ResponseWrapper<>(new MessageResponse(message));
     }
 
-    public static ResponseWrapper<ErrorResponse> errorResponse(String error, String message) {
-        return new ResponseWrapper<>(new ErrorResponse(error, message));
+    public static ResponseWrapper<ErrorResponse> errorResponse(TError errorType, String message) {
+        return new ResponseWrapper<>(new ErrorResponse(errorType.getDescription(), message));
     }
 }
 

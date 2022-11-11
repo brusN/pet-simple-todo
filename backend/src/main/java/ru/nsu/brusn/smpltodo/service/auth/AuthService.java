@@ -11,6 +11,7 @@ import ru.nsu.brusn.smpltodo.exception.validation.DataValidationException;
 import ru.nsu.brusn.smpltodo.model.dto.request.SignInRequest;
 import ru.nsu.brusn.smpltodo.model.dto.request.SignUpRequest;
 import ru.nsu.brusn.smpltodo.model.dto.response.SignInResponse;
+import ru.nsu.brusn.smpltodo.model.dto.response.common.TError;
 import ru.nsu.brusn.smpltodo.model.entity.ERole;
 import ru.nsu.brusn.smpltodo.model.entity.RoleEntity;
 import ru.nsu.brusn.smpltodo.model.entity.UserEntity;
@@ -54,7 +55,7 @@ public class AuthService {
                 request.getPassword()
         ));
         UserEntity user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new UserNotFoundException("User doesn't exists"));
+                .orElseThrow(() -> new UserNotFoundException("User doesn't exists", TError.BAD_REQUEST));
         String token = jwtUtils.generateToken(user);
         return new SignInResponse(token);
     }
@@ -62,7 +63,7 @@ public class AuthService {
     public void signup(SignUpRequest request) throws UserAlreadyExistsException, RoleNotFoundException, DataValidationException {
         // Unique username validation
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new UserAlreadyExistsException("User with username " + request.getUsername() + "already exists!");
+            throw new UserAlreadyExistsException("User with username " + request.getUsername() + "already exists!", TError.BAD_REQUEST);
         }
 
         // Validating by patterns

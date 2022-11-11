@@ -2,6 +2,7 @@ package ru.nsu.brusn.smpltodo.util.validator;
 
 import org.springframework.stereotype.Component;
 import ru.nsu.brusn.smpltodo.exception.validation.DataValidationException;
+import ru.nsu.brusn.smpltodo.model.dto.response.common.TError;
 
 import java.util.regex.Pattern;
 
@@ -12,7 +13,7 @@ public class PasswordValidator implements IValidator<String> {
     @Override
     public void validateData(String object) throws DataValidationException {
         if (!Pattern.matches(PASSWORD_PATTERN, object)) {
-            throw new DataValidationException("Password " + object + " doesn't match the pattern");
+            throw new DataValidationException("Password " + object + " doesn't match the pattern", TError.BAD_REQUEST);
         }
     }
 }
