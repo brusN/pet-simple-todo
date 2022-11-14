@@ -1,6 +1,7 @@
 package ru.nsu.brusn.smpltodo.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,10 +30,14 @@ public class UserEntity implements UserDetails {
     @NotNull
     private String password;
 
-    @Enumerated(value = EnumType.STRING)
-    @JoinTable(name = "Users_Roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<RoleEntity> roles = new HashSet<>();
+    @JoinTable(name = "Users_Roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @JoinColumn(name = "user_id")
+    private List<FolderEntity> folders;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

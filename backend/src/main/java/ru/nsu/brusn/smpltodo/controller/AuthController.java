@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.nsu.brusn.smpltodo.exception.auth.UserNotFoundException;
 import ru.nsu.brusn.smpltodo.model.dto.request.SignInRequest;
 import ru.nsu.brusn.smpltodo.model.dto.request.SignUpRequest;
-import ru.nsu.brusn.smpltodo.model.dto.response.common.ResponseWrapper;
 import ru.nsu.brusn.smpltodo.service.auth.AuthService;
 
 import javax.management.relation.RoleNotFoundException;
@@ -28,13 +27,13 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> signin(@RequestBody SignInRequest request) throws AuthenticationException, UserNotFoundException {
-        var response = new ResponseWrapper<>(authService.signin(request));
+        var response = authService.signin(request);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignUpRequest request) throws RoleNotFoundException {
-        authService.signup(request);
-        return ResponseEntity.ok(ResponseWrapper.okResponse("Sign up success"));
+        var response = authService.signup(request);
+        return ResponseEntity.ok(response);
     }
 }

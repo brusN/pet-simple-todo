@@ -1,4 +1,4 @@
-package ru.nsu.brusn.smpltodo.config;
+package ru.nsu.brusn.smpltodo.controller.config;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

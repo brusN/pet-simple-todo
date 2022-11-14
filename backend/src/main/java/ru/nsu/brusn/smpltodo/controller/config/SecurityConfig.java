@@ -1,4 +1,4 @@
-package ru.nsu.brusn.smpltodo.config;
+package ru.nsu.brusn.smpltodo.controller.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
