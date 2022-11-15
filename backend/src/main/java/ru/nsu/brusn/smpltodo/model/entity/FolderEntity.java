@@ -1,18 +1,22 @@
 package ru.nsu.brusn.smpltodo.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Setter
 @Getter
-public class TaskFolderEntity {
+@Table(name = "Folders")
+public class FolderEntity {
     @Id
     @SequenceGenerator(name = "folders_sequence", sequenceName = "folders_id_sequence", allocationSize = 1)
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "folders_sequence")
@@ -20,4 +24,12 @@ public class TaskFolderEntity {
 
     @NotNull
     private String name;
+
+    @OneToMany(mappedBy = "folder", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<TaskEntity> tasks = new ArrayList<>();
+
+    @ManyToOne
+    @JsonBackReference
+    private UserEntity user;
 }

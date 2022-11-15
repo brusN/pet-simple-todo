@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import ru.nsu.brusn.smpltodo.model.dto.response.common.ResponseWrapper;
-import ru.nsu.brusn.smpltodo.model.dto.response.common.TError;
 
 @Slf4j
 @ControllerAdvice

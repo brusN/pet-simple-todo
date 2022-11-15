@@ -42,8 +42,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
                         .antMatchers("/api/auth/**").permitAll()
-                        .antMatchers("/api/tasks/**").hasAuthority(ERole.ROLE_USER.getAuthority())
-                        .antMatchers("/api/folders/**").hasAuthority(ERole.ROLE_USER.getAuthority())
+                        .antMatchers("/api/task/**").hasAuthority(ERole.ROLE_USER.getAuthority())
+                        .antMatchers("/api/folder/**").hasAuthority(ERole.ROLE_USER.getAuthority())
                         .antMatchers("/api/admin/**").hasAuthority(ERole.ROLE_ADMIN.getAuthority())
                         .anyRequest().authenticated()
                 )

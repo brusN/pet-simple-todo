@@ -14,11 +14,11 @@ public class ResponseWrapper<T> {
         this.data = data;
     }
 
-    public static ResponseWrapper<MessageResponse> okResponse(String message) {
+    public static ResponseWrapper<Object> okResponse(String message) {
         return new ResponseWrapper<>(new MessageResponse(message));
     }
 
-    public static ResponseWrapper<ErrorResponse> errorResponse(TError errorType, String message) {
+    public static ResponseWrapper<Object> errorResponse(TError errorType, String message) {
         return new ResponseWrapper<>(new ErrorResponse(errorType.getDescription(), message));
     }
 }

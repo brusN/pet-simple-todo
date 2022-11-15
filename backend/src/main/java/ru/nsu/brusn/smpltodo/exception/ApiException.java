@@ -9,7 +9,7 @@ import ru.nsu.brusn.smpltodo.model.dto.response.common.TError;
 public class ApiException extends RuntimeException {
     private TError errorType;
 
-    public ApiException(String message, TError errorType) {
+    public ApiException(TError errorType, String message) {
         super(message);
         this.errorType = errorType;
     }

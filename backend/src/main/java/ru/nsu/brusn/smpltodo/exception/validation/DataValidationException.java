@@ -6,7 +6,7 @@ import ru.nsu.brusn.smpltodo.model.dto.response.common.TError;
 public class DataValidationException extends ApiException {
 
     public DataValidationException(String message, TError errorType) {
-        super(message, errorType);
+        super(errorType, message);
     }
 
     public DataValidationException(String message, Throwable cause, TError errorType) {

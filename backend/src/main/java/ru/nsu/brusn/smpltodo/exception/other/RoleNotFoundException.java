@@ -6,7 +6,7 @@ import ru.nsu.brusn.smpltodo.model.dto.response.common.TError;
 public class RoleNotFoundException extends ApiException {
 
     public RoleNotFoundException(String message, TError errorType) {
-        super(message, errorType);
+        super(errorType, message);
     }
 
     public RoleNotFoundException(String message, Throwable cause, TError errorType) {

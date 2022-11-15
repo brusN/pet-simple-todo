@@ -1,11 +1,17 @@
 package ru.nsu.brusn.smpltodo.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @Entity
+@Setter
+@Getter
+@Table(name = "Tasks")
 public class TaskEntity {
     @Id
     @SequenceGenerator(name = "tasks_sequence", sequenceName = "tasks_id_sequence", allocationSize = 1)
@@ -15,13 +21,17 @@ public class TaskEntity {
     @NotNull
     private String name;
 
-    private Date startDate;
-    private Date deadline;
+    @NotNull
+    private ZonedDateTime created;
+
+    private ZonedDateTime startDate;
+    private ZonedDateTime deadline;
     private String description;
 
-    private boolean important;
-    private boolean completed;
+    private Boolean important;
+    private Boolean completed;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private TaskFolderEntity folder;
+    @ManyToOne
+    @JsonBackReference
+    private FolderEntity folder;
 }
